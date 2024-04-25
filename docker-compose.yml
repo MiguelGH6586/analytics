@@ -1,0 +1,61 @@
+version: '3'
+services:
+  #mongodb:
+  #  env_file:
+  #    - .env
+  #  image: mongo:latest
+  #  restart: always
+  #  container_name: ${MONGO_HOST}
+  #  hostname: ${MONGO_HOST}
+  #  environment:
+  #    MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+  #    MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+  #  volumes:
+  #    - ./db/data:/data/db
+  #    - ./db/data/log:/var/log/mongodb/
+  #  ports:
+  #    - '27017:${MONGO_PORT}'
+  #  networks:
+  #    - default
+
+  #postgres:
+  #  image: postgres:12
+  #  env_file:
+  #    - .env
+  #  restart: always
+  #  ports:
+  #    - "5432:${POSTGRES_PORT}"
+  #  environment:
+  #    #- DATABASE_HOST = 127.0.0.1
+  #    - POSTGRES_USER = ${POSTGRES_USER}
+  #    - POSTGRES_PASSWORD = ${POSTGRES_PASSWORD}
+  #    - POSTGRES_DB = ${POSTGRES_DB}
+
+  #pgadmin:
+  #  image: dpage/pgadmin4
+  #  env_file:
+  #    - .env
+  #  environment:
+  #    - PGADMIN_DEFAULT_EMAIL = ${PGADMIN_DEFAULT_EMAIL}
+  #    - PGADMIN_DEFAULT_PASSWORD = ${PGADMIN_DEFAULT_PASSWORD}
+  #  ports:
+  #    - "5050:${PGADMIN_LISTEN_PORT}"
+  #  depends_on:
+  #    - postgres
+
+  api_analytics_bikes:
+    env_file:
+      - .env
+    build:
+      context: ./backend/api
+      dockerfile: Dockerfile
+    container_name: ${DOCKER_IMAGE_API_ANALYTICS}
+    hostname: ${DOCKER_IMAGE_API_ANALYTICS}
+    ports:
+      - '6060:${API_ANALYTICS_PORT}'
+    volumes:
+      - ./backend/api:/usr/src/api
+    #restart: unless-stopped
+    expose:
+      - 6060
+    #command: ["./server"]
