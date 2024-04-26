@@ -52,7 +52,7 @@ services:
     container_name: ${DOCKER_IMAGE_API_ANALYTICS}
     hostname: ${DOCKER_IMAGE_API_ANALYTICS}
     ports:
-      - '6060:${API_ANALYTICS_PORT}'
+      - '8080:${API_ANALYTICS_PORT}'
     volumes:
       - ./backend/api:/usr/src/api
     #restart: unless-stopped

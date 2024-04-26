@@ -1,1 +1,1 @@
-CompileDaemon --build="go build -o main ./app/main.go" --command=./main
+CompileDaemon --build="go build -o main ./api_v1/main.go" --command=./main
